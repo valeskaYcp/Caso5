@@ -1,8 +1,6 @@
-namespace DefaultNamespace;
-
 using System.Linq.Expressions;
 
-namespace Caso5_Gestion_de_producci_n.Repositorios.
+namespace Caso5.Repositorios
 {
     public interface IGenericRepository<TEntity> where TEntity : class
     {

@@ -1,6 +1,6 @@
-namespace DefaultNamespace;
+using Caso5.Models;
+using Caso5.Repositorios;
 
-using Caso5_Gestion_de_producci_n.Models;
 
 namespace Caso5_Gestion_de_producci_n.Repositorios
 {

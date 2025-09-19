@@ -1,14 +1,14 @@
-namespace DefaultNamespace;
-
-using Caso5_Gestion_de_producci_n.Data;
-using Caso5_Gestion_de_producci_n.Models;
 using Caso5_Gestion_de_producci_n.Repositorios;
+using Caso5.Models;
+using Caso5.Repositorios;
+using Caso5.Repositorios.Implementaciones;
+
 
 namespace Caso5_Gestion_de_produccion.Repositorios.Implementaciones
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly FabricaDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public IGenericRepository<Producto> Productos { get; }
         public IGenericRepository<MateriasPrima> MateriasPrimas { get; }
@@ -19,7 +19,7 @@ namespace Caso5_Gestion_de_produccion.Repositorios.Implementaciones
         public IGenericRepository<InspeccionesCalidad> InspeccionesCalidades { get; }
         public IGenericRepository<Proveedore> Proveedores { get; }
 
-        public UnitOfWork(FabricaDbContext context)
+        public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
             Productos = new GenericRepository<Producto>(_context);

@@ -1,17 +1,17 @@
-namespace DefaultNamespace;
-
+using System.Linq.Expressions;
+using Caso5.Models;
+using DefaultNamespace;
 using Microsoft.EntityFrameworkCore;
-using Caso5_Gestion_de_producci_n.Repositorios;
-using Caso5_Gestion_de_producci_n.Data;
 
-namespace Caso5_Gestion_de_produccion.Repositorios.Implementaciones
+
+namespace Caso5.Repositorios.Implementaciones
 {
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
-        private readonly FabricaDbContext _context;
+        private readonly ApplicationDbContext _context;
         private readonly DbSet<TEntity> _dbSet;
 
-        public GenericRepository(FabricaDbContext context)
+        public GenericRepository(ApplicationDbContext context)
         {
             _context = context;
             _dbSet = _context.Set<TEntity>();
