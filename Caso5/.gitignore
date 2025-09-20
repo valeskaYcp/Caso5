@@ -1,0 +1,22 @@
+﻿# Archivos compilados
+bin/
+obj/
+
+# Rider / IntelliJ
+.idea/
+*.iml
+
+# VS / VS Code
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# NuGet y artefactos
+*.nupkg
+*.snupkg
+artifacts/
+
+# Logs y temporales
+*.log
