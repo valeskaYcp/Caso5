@@ -20,5 +20,14 @@ namespace Caso5.Controllers
                 .FindAsync(p => p.Cantidad < p.StockMinimo);
             return Ok(productos);
         }
+        //obtener producto por ID
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetProducto(int id)
+        {
+            var producto = await _unitOfWork.Repository<InventarioProducto>().GetByIdAsync(id);
+            if (producto == null) return NotFound();
+            return Ok(producto);
+        }
+
     }
 }
