@@ -43,5 +43,18 @@ namespace Caso5.Services
             _unitOfWork.Repository<OrdenesProduccion>().Update(orden);
             await _unitOfWork.SaveAsync();
         }
+        
+        //porcentaje de productos defectuosos en una etapa
+        public async Task<decimal> ObtenerPorcentajeDefectuososAsync(int etapaId)
+        {
+            var inspecciones = await _unitOfWork.Repository<InspeccionesCalidad>()
+                .FindAsync(i => i.EtapaId == etapaId);
+            var total = inspecciones.Sum(i => (decimal)i.ProductosDefectuosos);
+            var procesados = inspecciones.Sum(i => (decimal?)i.Etapa?.CantidadProcesada ?? 0);
+
+            return procesados > 0 ? total / procesados * 100 : 0;
+        }
+
+
     }
 }
