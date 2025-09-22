@@ -20,5 +20,35 @@ namespace Caso5.Controllers
                 .FindAsync(m => m.ProveedorId == proveedorId);
             return Ok(materias);
         }
+        
+        //buscar materias primas por nombre
+        [HttpGet("buscar")]
+        public async Task<IActionResult> Buscar([FromQuery] string q)
+        {
+            var materias = await _unitOfWork.Repository<MateriasPrima>()
+                .FindAsync(m => m.Nombre.Contains(q) || m.Descripcion!.Contains(q));
+            return Ok(materias);
+        }
+        //listar materias primas por unidad
+        [HttpGet("por-unidad/{unidad}")]
+        public async Task<IActionResult> ObtenerPorUnidad(string unidad)
+        {
+            var materias = await _unitOfWork.Repository<MateriasPrima>()
+                .FindAsync(m => m.UnidadMedida == unidad);
+            return Ok(materias);
+        }
+        
+        //obtener inventario asociado a una materia prima
+        [HttpGet("{id}/inventario")]
+        public async Task<IActionResult> ObtenerInventario(int id)
+        {
+            var materia = await _unitOfWork.Repository<MateriasPrima>().GetByIdAsync(id);
+            if (materia == null) return NotFound();
+
+            return Ok(materia.InventarioMateriasPrimas);
+        }
+
+
+
     }
 }
